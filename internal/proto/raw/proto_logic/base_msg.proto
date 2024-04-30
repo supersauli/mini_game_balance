@@ -1,0 +1,11 @@
+syntax = "proto3";
+package proto_logic;
+import "proto_logic/msg_id.proto";
+message BaseMsg {
+  MsgId msg_id = 1;
+  bytes data = 2;
+}
+
+service BaseMsgCall {
+  rpc Add(BaseMsg) returns (BaseMsg);
+}

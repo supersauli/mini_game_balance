@@ -1,0 +1,8 @@
+syntax = "proto3";
+package proto_logic;
+
+
+message Error {
+  int32 ErrorCode =     1;
+  string ErrorString = 2;
+}

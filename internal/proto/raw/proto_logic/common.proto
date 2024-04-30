@@ -1,0 +1,11 @@
+syntax = "proto3";
+package proto_logic;
+
+
+message HeartbeatRequest {
+  string data = 1;
+}
+
+message HeartbeatResponse {
+  string data = 1;
+}

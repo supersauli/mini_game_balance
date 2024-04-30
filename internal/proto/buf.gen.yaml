@@ -1,0 +1,18 @@
+version: v1
+managed:
+  enabled: true
+  go_package_prefix:
+    default: mini_game_balance/internal/proto/gen
+plugins:
+    # 生成go代码
+    - plugin: buf.build/protocolbuffers/go
+      out: gen
+      opt: paths=source_relative
+    # 生成grpc connect go代码
+    - plugin: buf.build/bufbuild/connect-go
+      out: gen
+      opt: paths=source_relative
+    # 生成grpc go服务器代码
+    - plugin: go-grpc
+      out: gen
+      opt: paths=source_relative

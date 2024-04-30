@@ -1,0 +1,63 @@
+# 系统配置
+system:
+  #系统对外端口
+  outside-http-addr: "127.0.0.1:20000"
+  #内部通信端口
+  inside-http-addr: "127.0.0.1:20001"
+
+  web-http-addr: "127.0.0.1:8989"
+  # 超时单位秒
+  timeout-second : 10
+
+
+# sign 路由签名配置
+sign:
+  token: "1e3770ac8eb8d7c15784b71dfab024ab"
+  buse: true
+
+# redis configuration
+redis:
+  db: 1
+  addr: "127.0.0.1:6379"
+  password: ""
+
+# 数据库
+mysql:
+  path: 192.168.1.39
+  port: "3306"
+  config: charset=utf8mb4&parseTime=True&loc=Local
+  db-name: "account_center"
+  username: root
+  password: root
+  max-idle-conns: 10
+  max-open-conns: 100
+  log-mode: info
+  log-zap: true
+
+
+
+# 鉴权功能配置参数
+jwt:
+  signing-key: 'JzjE0YprpspeSxAribEb'
+  expires-time: 60000
+  buffer-time: 86400
+  issuer: 'JzjE0YprpspeSxAribEb'
+# 日志参数
+zap:
+  level: debug
+  prefix: '[game_balance]'
+  format: json
+  director: log
+  encode-level: LowercaseLevelEncoder
+  stacktrace-key: stacktrace
+  max-age: 30
+  show-line: true
+  log-in-console: true
+
+
+
+account:
+  url: ""
+
+# 对象定义目录
+object_path: "./object"

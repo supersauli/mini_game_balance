@@ -1,0 +1,42 @@
+syntax = "proto3";
+package proto_logic;
+
+// 消息id
+enum MsgId {
+    NONE = 0;
+    // 登录
+    LOGIN = 1;
+    // 登录返回
+    LOGIN_RET = 2;
+    // 登出
+    LOGOUT = 3;
+    LOGOUT_RET = 4;
+    // 心跳
+    HEARTBEAT = 5;
+    // 心跳返回
+    HEARTBEAT_RET = 6;
+
+    //  创建角色
+    CREATE_ROLE = 20;
+    CREATE_ROLE_RET = 21;
+    // 获取角色
+    GET_ROLE = 23;
+    GET_ROLE_RET = 24;
+
+    // 同步属性
+    SYNC_ATTR= 30;
+    // 同步表格
+    SYNC_TALE = 31;
+
+    // 设置属性
+    SET_PROP = 40;
+    SET_PROP_RET = 41;
+
+
+
+    // 角色准备
+    ROLE_READY = 50;
+    ROLE_READY_RET = 51;
+
+
+}
