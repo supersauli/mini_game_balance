@@ -12,13 +12,14 @@ import (
 )
 
 type Server struct {
-	Version int    `json:"version"` // 配置文件版版本号
-	Mysql   Mysql  `mapstructure:"mysql" json:"mysql" yaml:"mysql"`
-	Redis   Redis  `mapstructure:"redis" json:"redis" yaml:"redis"`
-	Zap     Zap    `mapstructure:"zap" json:"zap" yaml:"zap"`
-	System  System `mapstructure:"system" json:"system" yaml:"system"`
-	JWT     JWT    `mapstructure:"jwt" json:"jwt" yaml:"jwt"`
-	Sign    Sign   `mapstructure:"sign" json:"sign" yaml:"sign"`
+	Version int     `json:"version"` // 配置文件版版本号
+	Mysql   Mysql   `mapstructure:"mysql" json:"mysql" yaml:"mysql"`
+	Redis   Redis   `mapstructure:"redis" json:"redis" yaml:"redis"`
+	Zap     Zap     `mapstructure:"zap" json:"zap" yaml:"zap"`
+	System  System  `mapstructure:"system" json:"system" yaml:"system"`
+	JWT     JWT     `mapstructure:"jwt" json:"jwt" yaml:"jwt"`
+	Sign    Sign    `mapstructure:"sign" json:"sign" yaml:"sign"`
+	Balance Balance `mapstructure:"balance" json:"balance" yaml:"balance"`
 }
 
 var ServerConfig = &Server{}

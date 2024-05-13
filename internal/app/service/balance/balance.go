@@ -3,12 +3,16 @@ package balance
 import (
 	"context"
 	"errors"
+	"github.com/dengsgo/math-engine/engine"
+	"github.com/spf13/cast"
 	"go.uber.org/zap"
+	"mini_game_balance/configs"
 	"mini_game_balance/internal/app/router/router_http/request"
 	"mini_game_balance/internal/pkg/utils"
+	"strings"
 )
 
-func RegisterServer(req *request.RegisterServerReq) error {
+func RegisterServer(req *request.RegisterServerReq) (score float64, err error) {
 	reqUUID := utils.RanInt64()
 	log := zap.L().With(zap.String("func_name", "RegisterServer"), zap.Int64("req_uuid", reqUUID))
 	log.Debug("request ", zap.Any("req", req))
@@ -17,9 +21,23 @@ func RegisterServer(req *request.RegisterServerReq) error {
 
 	ctx = context.WithValue(ctx, "log", log)
 
-	err := SetServerInfo(ctx, req.ServerType, req.UID, req.SortKey, req.ServerInfo)
+	formula := configs.ServerConfig.Balance.Formula
+	for k, v := range req.ScoreMap {
+		formula = strings.ReplaceAll(formula, k, cast.ToString(v))
+	}
 
-	return err
+	score, err = engine.ParseAndExec(formula)
+	if err != nil {
+		log.Error("engine exec formula error ", zap.Any("req", req), zap.Error(err))
+		return
+	}
+
+	err = SetServerInfo(ctx, req.ServerType, req.UID, score, req.ServerInfo)
+	if err != nil {
+		log.Error("set server info error ", zap.Any("req", req), zap.Error(err))
+	}
+
+	return
 }
 
 func GetServer(req *request.GetServerReq) (string, error) {

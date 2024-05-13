@@ -16,12 +16,12 @@ func RegisterServer(c *gin.Context) {
 		response.Fail(c)
 		return
 	}
-	err = balance.RegisterServer(&req)
+	score, err := balance.RegisterServer(&req)
 	var resp request.RegisterServerResp
+	resp.ScoreResult = score
 	if err != nil {
 		response.FailWithMessage(err.Error(), c)
 	} else {
-		resp.Msg = "success"
-		response.OkWithData(resp, c)
+		response.OkWithMessageData("success", resp, c)
 	}
 }

@@ -5,6 +5,7 @@ import (
 	"mini_game_balance/configs"
 	"mini_game_balance/global"
 	"mini_game_balance/internal/app/router/router_http"
+	"mini_game_balance/internal/app/service/balance"
 	"mini_game_balance/internal/pkg/db/redisDB"
 	"mini_game_balance/internal/pkg/http_server"
 	"mini_game_balance/internal/pkg/mylog"
@@ -55,7 +56,7 @@ func main() {
 	//	global.GinRouter,
 	//	global.WebSocketRouter,
 	//	global.ConnectManager)
-
+	balance.RemoveOfflineServerTick()
 	// 创建一个 channel，用于捕获系统信号
 	signals := make(chan os.Signal, 1)
 	signal.Notify(signals, syscall.SIGINT, syscall.SIGTERM)

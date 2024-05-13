@@ -37,7 +37,9 @@ func OkWithMessage(message string, c *gin.Context) {
 func OkWithData(data interface{}, c *gin.Context) {
 	Result(SUCCESS, data, "", c)
 }
-
+func OkWithMessageData(message string, data interface{}, c *gin.Context) {
+	Result(SUCCESS, data, message, c)
+}
 func OkWithDetailed(data interface{}, message string, c *gin.Context) {
 	Result(SUCCESS, data, message, c)
 }
